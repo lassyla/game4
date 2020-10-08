@@ -414,7 +414,7 @@ void PlayMode::draw(glm::uvec2 const &drawable_size) {
 	render_text(buf, 950.0f, 100.0f, 250.0f, 1.0f, text_length, glm::vec3(0.2, 0.2f, 0.2f));
 	
 	if(text_finished){
-		for(int i = 0; i < choice_bufs.size(); i++) {
+		for(unsigned int i = 0; i < choice_bufs.size(); i++) {
 			if(i == current_choice_index) 
 				render_text(choice_bufs[i], 350.0f, 150.0f + 500.0f * i, 75.0f, 1.0f, -1, glm::vec3(1.0f, 0.4f, 0.4f));
 			else 
