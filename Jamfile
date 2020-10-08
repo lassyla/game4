@@ -111,6 +111,7 @@ GAME_NAMES =
 	;
 
 COMMON_NAMES =
+	data_path
 	PathFont
 	PathFont-font
 	DrawLines
@@ -139,7 +140,6 @@ SHOW_SCENE_NAMES =
 
 PACK_TEXT_SCENE_NAMES =
 	PackTextScenes
-	data_path
 	;
 
 
