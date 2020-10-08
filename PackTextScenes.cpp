@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
         line = line.substr(0, line.find("\\")); 
         size_t num_scenes = stoi(line);    
 
-        for(int i = 0; i < num_scenes; i++) {
+        for(size_t i = 0; i < num_scenes; i++) {
             TextScene ts; 
             //get scene ID
             std::getline(file, line, ':');
@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
             
             //ts.text = line; 
 
-            for(int j = 0; j < ts.num_choices; j++) {
+            for(size_t j = 0; j < ts.num_choices; j++) {
                 Choice choice; 
 
                 //get the choice text

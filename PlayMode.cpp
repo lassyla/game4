@@ -192,7 +192,7 @@ bool PlayMode::handle_event(SDL_Event const &evt, glm::uvec2 const &window_size)
 
 void PlayMode::set_scene(uint8_t scene_id) {
 	//change the sound and display according to specific scenes
-	if(scene_id == 15 || scene_id == 2 || scene_id == 0 || scene_id == 27) {
+	if(scene_id == 15 || scene_id == 1 || scene_id == 0 || scene_id == 27) {
 		//show the plain bg 
 		oratio->position = hidden_position; 
 		ratcliffe->position = hidden_position; 
