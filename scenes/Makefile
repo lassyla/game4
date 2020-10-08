@@ -1,27 +1,13 @@
-.PHONY : all
 
-#n.b. the '-y' sets autoexec scripts to 'on' so that driver expressions will work
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S),Darwin)
-	BLENDER = /Applications/Blender/blender.app/Contents/MacOS/blender -y
-else ifeq ($(UNAME_S),Linux)
-	BLENDER = ../../blender-2.90.0-linux64/blender -y
-else
-	BLENDER = blender
-endif
-
-EXPORT_MESHES=export-meshes.py
-EXPORT_SCENE=export-scene.py
-
+BLENDER="C:\Program Files\Blender Foundation\Blender 2.90\blender.exe"
 DIST=../dist
 
 all : \
-	$(DIST)/hexapod.pnct \
-	$(DIST)/hexapod.scene \
+    $(DIST)/sewer.pnct \
+    $(DIST)/sewer.scene \
 
+$(DIST)/sewer.scene : sewer.blend export-scene.py
+    $(BLENDER) --background --python export-scene.py -- "sewer.blend:Main" "$(DIST)/sewer.scene"
 
-$(DIST)/hexapod.scene : hexapod.blend $(EXPORT_SCENE)
-	$(BLENDER) --background --python $(EXPORT_SCENE) -- '$<':Main '$@'
-
-$(DIST)/hexapod.pnct : hexapod.blend $(EXPORT_MESHES)
-	$(BLENDER) --background --python $(EXPORT_MESHES) -- '$<':Main '$@'
+$(DIST)/sewer.pnct : sewer.blend export-meshes.py
+    $(BLENDER) --background --python export-meshes.py -- "sewer.blend:Main" "$(DIST)/sewer.pnct" 

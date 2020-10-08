@@ -104,7 +104,7 @@ GAME_NAMES =
 	PlayMode
 	main
 	LitColorTextureProgram
-	#ColorTextureProgram #not used right now, but you might want it
+	ColorTextureProgram #not used right now, but you might want it
 	Sound
 	load_wav
 	load_opus
@@ -138,6 +138,10 @@ SHOW_SCENE_NAMES =
 	ShowSceneMode
 	;
 
+PACK_TEXT_SCENE_NAMES =
+	PackTextScenes
+	data_path
+	;
 
 
 LOCATE_TARGET = objs ; #put objects in 'objs' directory
@@ -146,6 +150,7 @@ Objects
 	$(COMMON_NAMES:S=.cpp)
 	$(SHOW_MESHES_NAMES:S=.cpp)
 	$(SHOW_SCENE_NAMES:S=.cpp)
+	$(PACK_TEXT_SCENE_NAMES:S=.cpp)
 	;
 
 #------------------------
@@ -159,7 +164,7 @@ Objects
 LOCATE_TARGET = dist ; #put main in 'dist' directory
 MainFromObjects game : $(GAME_NAMES:S=$(SUFOBJ)) $(COMMON_NAMES:S=$(SUFOBJ)) ;
 
-LOCATE_TARGET = scenes ; #put show-meshes and show-scene utilities in the 'scenes' directory:
+LOCATE_TARGET = scenes ; #put pack-text and show-meshes and show-scene utilities in the 'scenes' directory:
 MainFromObjects show-meshes : $(SHOW_MESHES_NAMES:S=$(SUFOBJ)) $(COMMON_NAMES:S=$(SUFOBJ)) ;
 MainFromObjects show-scene : $(SHOW_SCENE_NAMES:S=$(SUFOBJ)) $(COMMON_NAMES:S=$(SUFOBJ)) ;
-
+MainFromObjects pack-text : $(PACK_TEXT_SCENE_NAMES:S=$(SUFOBJ)) $(COMMON_NAMES:S=$(SUFOBJ)) ;
