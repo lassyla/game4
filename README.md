@@ -4,7 +4,7 @@ Author: Alyssa Lee and Madeline Anthony
 
 Design: You get to romance up to two rats. also theyre ~twins~ 
 
-Text Drawing: The text is shaped using harfbuzz and rendered with freetype. The glyphs are loaded and textures are created once at the start, and rendered at runtime. Most text rendering code followed [this tutorial](https://learnopengl.com/In-Practice/Text-Rendering) (thanks to hjamal for sharing!). Dialogue was created in a simple text file and stored/loaded using chunks. 
+Text Drawing: The text is shaped using harfbuzz and rendered with freetype. Individual textures for each glyph are loaded the first time that glyph appears, then they are stored in a map. Most text rendering code followed [this tutorial](https://learnopengl.com/In-Practice/Text-Rendering) (thanks to hjamal for sharing!). Dialogue was created in a simple text file and stored/loaded using chunks. 
 
 Screen Shot:
 

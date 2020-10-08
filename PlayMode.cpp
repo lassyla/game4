@@ -177,7 +177,7 @@ bool PlayMode::handle_event(SDL_Event const &evt, glm::uvec2 const &window_size)
 		else if (evt.key.keysym.sym == SDLK_RETURN) {
 			if(!text_finished){
 				text_finished = true; 
-				text_length = unsigned int(current_scene.text_length);
+				text_length = (unsigned int)(current_scene.text_length);
 			}
 			else{
 				set_scene(choices[current_scene.choice_start + current_choice_index].scene_id);
@@ -249,7 +249,7 @@ void PlayMode::set_scene(uint8_t scene_id) {
 
 	//main scene text
 	hb_buffer_reset(buf); 
-	hb_buffer_add_utf8(buf, &textchars[0], -1, int(current_scene.text_start), unsigned int(current_scene.text_length));
+	hb_buffer_add_utf8(buf, &textchars[0], -1, int(current_scene.text_start), (unsigned int)(current_scene.text_length));
 	hb_shape(font, buf, NULL, 0);
 
 	//delete previous choices
@@ -262,7 +262,7 @@ void PlayMode::set_scene(uint8_t scene_id) {
 	for(size_t i = current_scene.choice_start; i < current_scene.choice_start + current_scene.num_choices; i++) {
 		hb_buffer_t *choice_buf = hb_buffer_create();
 
-		hb_buffer_add_utf8(choice_buf, &textchars[0], -1, int(choices[i].text_start), unsigned int(choices[i].text_length));
+		hb_buffer_add_utf8(choice_buf, &textchars[0], -1, int(choices[i].text_start), (unsigned int)(choices[i].text_length));
 		hb_buffer_set_direction(choice_buf, HB_DIRECTION_LTR);
 		hb_buffer_set_script(choice_buf, HB_SCRIPT_LATIN);
 		hb_buffer_set_language(choice_buf, hb_language_from_string("en", -1));
@@ -278,10 +278,10 @@ void PlayMode::set_scene(uint8_t scene_id) {
 void PlayMode::update(float elapsed) {
 	if(!text_finished){
 		text_time_start += elapsed; 
-		text_length = unsigned int(text_time_start / text_speed); 
+		text_length = (unsigned int)(text_time_start / text_speed); 
 		if(text_length >= current_scene.text_length) {
 			text_finished = true; 
-			text_length = unsigned int(current_scene.text_length);
+			text_length = (unsigned int)(current_scene.text_length);
 		}
 	}
 }
@@ -305,8 +305,7 @@ void PlayMode::render_text(hb_buffer_t *buffer, float width, float x, float y, f
 
 	unsigned int glyph_count; 
 	hb_glyph_info_t *glyph_info    = hb_buffer_get_glyph_infos(buffer, &glyph_count);
-	hb_glyph_position_t *glyph_pos = hb_buffer_get_glyph_positions(buffer, &glyph_count);
-	if(length != -1 && glyph_count > unsigned int(length)) glyph_count = length; 
+	if(length != -1 && glyph_count > (unsigned int)(length)) glyph_count = length; 
 
 	for (unsigned int i = 0; i < glyph_count; ++i) {
 
@@ -340,13 +339,13 @@ void PlayMode::render_text(hb_buffer_t *buffer, float width, float x, float y, f
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			// now store character for later use
-			Character character = {
+			Character ch = {
 				texture, 
 				glm::ivec2(font_face->glyph->bitmap.width, font_face->glyph->bitmap.rows),
 				glm::ivec2(font_face->glyph->bitmap_left, font_face->glyph->bitmap_top),
-				unsigned int(font_face->glyph->advance.x)
+				(unsigned int)(font_face->glyph->advance.x)
 			};
-			Characters.insert(std::pair<FT_ULong, Character>(glyph_info[i].codepoint, character));
+			Characters.insert(std::pair<FT_ULong, Character>(glyph_info[i].codepoint, ch));
 		}
 
 		Character ch = Characters[glyph_info[i].codepoint];
