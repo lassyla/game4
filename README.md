@@ -11,7 +11,7 @@ Screen Shot:
 ![Screen Shot](screenshot.png)
 
 How To Play:
-Use the enter/return key to advance. Choose between options with left and right arrow keys. 
+Use the enter/return key to advance. Choose between options with left and right arrow keys. Nab the rat of your dreams.
 
 Sources: 
 
